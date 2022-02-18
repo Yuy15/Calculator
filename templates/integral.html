@@ -1,0 +1,20 @@
+{% extends 'index.html' %}
+{% block content %}
+<h1>Calculator</h1>
+
+<form action="/">
+    <input type="submit" id="home", value="Home">
+</form>
+
+<form action="/integral", method="post">
+    <label for="tgt">target:</label>
+    <input type="text" id="tgt_input" name="tgt_latex" value={{ tgt }}>
+    <input type="submit" value="integral">
+</form>
+
+<div>
+    <p id="preview">preview:\[{{ tgt }}\]</p>
+</div>
+
+\[{{ ans }}\]
+{% endblock content %}
