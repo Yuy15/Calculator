@@ -2,19 +2,24 @@
 {% block content %}
 <h1>Calculator</h1>
 
-<form action="/">
-    <input type="submit" id="home", value="Home">
-</form>
+<button onclick="location.href='/'">Home</button>
 
 <form action="/integral", method="post">
     <label for="tgt">target:</label>
     <input type="text" id="tgt_input" name="tgt_latex" value={{ tgt }}>
-    <input type="submit" value="integral">
+    <button type="submit">integral</button>
 </form>
 
-<div>
-    <p id="preview">preview:\[{{ tgt }}\]</p>
-</div>
+<main>
+    <div class="preview-space">
+        <p id="preview">preview:\[{{ tgt }}\]</p>
+    </div>
 
-\[{{ ans }}\]
+    <div class="ansewer-space">
+        {% if ans %}
+        <p id="answer">ans:\[{{ tgt }} = {{ ans }}\]</p>
+        {% endif %}
+    </div>
+</main>
+
 {% endblock content %}

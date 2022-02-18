@@ -12,13 +12,10 @@
     <script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
     <script src="{{url_for('static', filename='js/jquery-3.6.0.min.js')}}"></script>
-    
+
 </head>
 <body>
     {% block content %}
     {% endblock %}
-
-    <!-- jsの読み込み -->
-    <script src="{{url_for('static', filename='js/script.js')}}"></script>
 </body>
 </html>

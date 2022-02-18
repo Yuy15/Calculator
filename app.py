@@ -30,5 +30,5 @@ def integral():
         return render_template('integral.html')
     else:
         tgt_latex = request.form.get('tgt_latex')
-        ans = sym(tgt_latex)
-        return render_template('integral.html', tgt=tgt_latex, ans=ans)
+        ans_latex = sym(tgt_latex)
+        return render_template('integral.html', tgt=tgt_latex, ans=ans_latex)

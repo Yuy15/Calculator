@@ -1,6 +1,9 @@
+var tgt_latex
+
 $(function(){
     $(document).on('input', '#tgt_input', function(e) {
-        $('#preview').html(`preview:\\begin\{align\} ${$('#tgt_input').val()} \\end\{align\}`);
+        tgt_latex = `preview:\\begin\{align\} ${$('#tgt_input').val()} \\end\{align\}`
+        $('#preview').html(tgt_latex);
         MathJax.Hub.Queue(["Typeset",MathJax.Hub,"quMain"]);
     });
 });
