@@ -30,5 +30,21 @@ def integral():
         return render_template('integral.html')
     else:
         tgt_latex = request.form.get('tgt_latex')
-        ans_latex = sym(tgt_latex)
+        tgt_latex = tgt_latex.replace(' ', '')
+        tgt_latex = greece2latex(tgt_latex)
+        ans_latex = integral(tgt_latex)
         return render_template('integral.html', tgt=tgt_latex, ans=ans_latex)
+    
+@app.route('/equation', methods=['GET', 'POST'])
+def equation():
+    if request.method == 'GET':
+        return render_template('equation.html')
+    else:
+        tgt_latex = request.form.get('tgt_latex')
+        tgt_latex = tgt_latex.replace(' ', '')
+        tgt_latex = greece2latex(tgt_latex)
+        
+        ans_latex = solve_equation(tgt_latex)
+        print(ans_latex)
+        ans_latex = ans_latex.replace('\left[', '').replace(r'\right]', '')
+        return render_template('equation.html', tgt=tgt_latex, ans=ans_latex)

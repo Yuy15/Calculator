@@ -4,10 +4,10 @@
 
 <button onclick="location.href='/'">Home</button>
 
-<form action="/integral", method="post">
+<form action="/equation", method="post">
     <label for="tgt">target:</label>
     <input type="text" id="tgt_input" name="tgt_latex" autocomplete="off" value={{ tgt }}>
-    <button type="submit">integral</button>
+    <button type="submit">solve</button>
 </form>
 
 <main>
@@ -17,13 +17,15 @@
 
     <div class="ansewer-space">
         {% if ans %}
-        <p id="answer">ans:\[{{ tgt }} = {{ ans }}\]</p>
+        <p id="answer">
+            ans:\[{{ ans }}\]
+        </p>
         {% endif %}
     </div>
 
     <div class="latex-space">
-        {% if tgt %}
-        <p>latex:<textarea id="latex" readonly>&#123;{{ tgt }}&#125;</textarea></p>
+        {% if ans %}
+        <p>latex:<textarea id="latex" readonly>&#123;{{ ans }}&#125;</textarea></p>
         {% endif %}
     </div>
 </main>
