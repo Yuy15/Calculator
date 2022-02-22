@@ -6,6 +6,7 @@ const greece_dict = {
     'β':'\beta',
 }
 
+// inputを即時反映
 $(function(){
     $(document).on('input', '#tgt_input', function(e) {
         tgt_latex = `preview:\\begin\{align\} ${ $('#tgt_input').val() } \\end\{align\}`;
@@ -14,16 +15,23 @@ $(function(){
     });
 });
 
-// function greece2latex(str){
-//     var result;
-//     for (e in str){
-//         const isGreece = greece_dict.some((g) => g.id == e);
-//         if (isGreece){
-//             result += greece_dict[e];
-//         }
-//     }
-//     return result
-// }
+// "/"入力でカーソル合わせ
+$(function(){
+    $('html').keyup(function(e){
+        switch(e.which){
+            case 191:
+                $('#tgt_input').focus();
+            break;
+        }
+    })
+});
+
+// textarea選択で全選択
+$(function(){
+    $(document).on('click', 'textarea', function(e) {
+        $(this).select();
+    });
+});
 
 //clipboardへの関与は現状不可か
 // $(function(){

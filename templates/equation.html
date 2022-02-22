@@ -6,20 +6,30 @@
 
 <form action="/equation", method="post">
     <label for="tgt">target:</label>
-    <input type="text" id="tgt_input" name="tgt_latex" autocomplete="off" value={{ tgt }}>
+    <input type="text" id="tgt_input" name="tgt_latex" autocomplete="off" value="{{ tgt }}" placeholder="x^2+4x+3=0">
     <button type="submit">solve</button>
 </form>
 
 <main>
-    <div class="preview-space">
-        <p id="preview">preview:\[{{ tgt }}\]</p>
+    <div class="preview-space" class="scroll-on">
+        {%if tgt %}
+        <p id="preview" class="scroll-on">preview:\[{{ tgt }}\]</p>
+        {% else %}
+        <p id="preview" class="scroll-on">preview:\[ x^2+4x+3=0 \]</p>
+        {% endif %}
     </div>
 
-    <div class="ansewer-space">
-        {% if ans %}
+    {% if ans %}
+    <div id="ansewer-space" class="scroll-on">
         <p id="answer">
             ans:\[{{ ans }}\]
         </p>
+    </div>
+    {% endif %}
+
+    <div class="latex-space">
+        {% if tgt %}
+        <p>latex:<textarea id="latex" readonly>&#123;{{ tgt }}&#125;</textarea></p>
         {% endif %}
     </div>
 
