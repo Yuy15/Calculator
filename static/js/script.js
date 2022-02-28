@@ -6,31 +6,29 @@ const greece_dict = {
     'β':'\beta',
 }
 
-// inputを即時反映
-$(function(){
-    $(document).on('input', '#tgt_input', function(e) {
-        tgt_latex = `preview:\\begin\{align\} ${ $('#tgt_input').val() } \\end\{align\}`;
-        $('#preview').html(tgt_latex);
-        MathJax.Hub.Queue(["Typeset",MathJax.Hub,"quMain"]);
-    });
+const $tgt_input = document.getElementById('tgt_input');
+
+$tgt_input.addEventListener('input', (e) => {
+    tgt_latex = `preview:\\begin\{align\} ${ e.target.value } \\end\{align\}`;
+    console.log(tgt_latex);
+    document.getElementById('preview').textContent = tgt_latex;
+    MathJax.Hub.Queue(["Typeset",MathJax.Hub,"quMain"]);
 });
 
-// "/"入力でカーソル合わせ
-$(function(){
-    $('html').keyup(function(e){
-        switch(e.which){
-            case 191:
-                $('#tgt_input').focus();
-            break;
-        }
-    })
+// キーボード入力
+document.addEventListener('keyup', (e) => {
+    switch(e.which){
+        // "/"入力でカーソル合わせ
+        case 191:
+            $tgt_input.focus();
+            $tgt_input.setSelectionRange(-1,-1)
+        break;
+    }
 });
 
 // textarea選択で全選択
-$(function(){
-    $(document).on('click', 'textarea', function(e) {
-        $(this).select();
-    });
+document.querySelector('textarea').addEventListener('click', () => {
+    this.select();
 });
 
 //clipboardへの関与は現状不可か
