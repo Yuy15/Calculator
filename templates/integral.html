@@ -2,24 +2,60 @@
 {% block content %}
 <h1>Calculator</h1>
 
-<button onclick="location.href='/'">Home</button>
+<main id="main">
+    <button onclick="location.href='/'">Home</button>
 
-<form action="/integral", method="post">
-    <label for="tgt">target:</label>
-    <input type="text" id="tgt_input" name="tgt_latex" value={{ tgt }}>
-    <button type="submit">integral</button>
-</form>
+    <form action="/integral", method="post">
+        <label for="tgt">target:</label>
+        <input type="text" id="tgt_input" name="tgt_latex" autocomplete="off" v-model:value="tgt" placeholder="\int x^2 dx">
+        <button type="submit" class="go">integral</button>
+    </form>
 
-<main>
-    <div class="preview-space">
-        <p id="preview">preview:\[{{ tgt }}\]</p>
+    <select id="typeOfIntegral">
+        <option value="none">入力補助</option>
+        <option value=1>単積分</option>
+        <option value=2>2重積分</option>
+        <option value=3>3重積分</option>
+    </select>
+
+    <div id="detail">
+        <div class="detailOfIntegral" id="detail1" style="display:none">
+            <input type="text" class="u_lim">
+            <input type="text" class="d" value="x">
+            <input type="text" class="b_lim">
+        </div>
+        <div class="detailOfIntegral" id="detail2" style="display:none">
+            <input type="text" class="u_lim">
+            <input type="text" class="d" value="y">
+            <input type="text" class="b_lim">
+        </div>
+        <div class="detailOfIntegral" id="detail3" style="display:none">
+            <input type="text" class="u_lim">
+            <input type="text" class="d" value="z">
+            <input type="text" class="b_lim">
+        </div>
     </div>
 
-    <div class="ansewer-space">
-        {% if ans %}
-        <p id="answer">ans:\[{{ tgt }} = {{ ans }}\]</p>
+    <div class="preview-space">
+        {%if tgt %}
+        <p id="preview" class="scroll-on">preview:\[{{ tgt }}\]</p>
+        {% else %}
+        <p id="preview" class="scroll-on">preview:\[ \int x^2 dx \]</p>
+        {% endif %}
+    </div>
+
+    {% if ans %}
+    <div id="ansewer-space" class="scroll-on">
+        <p id="answer">ans:\[{{ tgt }} = {{ ans }}\]</p>    
+    </div>
+    {% endif %}
+    
+    <div id="latex-space">
+        {% if tgt %}
+        <p>latex:<textarea id="latex" readonly>&#123;{{ tgt }}&#125;</textarea></p>
         {% endif %}
     </div>
 </main>
+
 
 {% endblock content %}
