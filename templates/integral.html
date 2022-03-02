@@ -6,20 +6,31 @@
 
 <form action="/integral", method="post">
     <label for="tgt">target:</label>
-    <input type="text" id="tgt_input" name="tgt_latex" value={{ tgt }}>
-    <button type="submit">integral</button>
+    <input type="text" id="tgt_input" name="tgt_latex" autocomplete="off" value="{{ tgt }}" placeholder="\int x^2 dx">
+    <button type="submit" class="go">integral</button>
 </form>
 
 <main>
     <div class="preview-space">
-        <p id="preview">preview:\[{{ tgt }}\]</p>
+        {%if tgt %}
+        <p id="preview" class="scroll-on">preview:\[{{ tgt }}\]</p>
+        {% else %}
+        <p id="preview" class="scroll-on">preview:\[ \int x^2 dx \]</p>
+        {% endif %}
     </div>
 
-    <div class="ansewer-space">
-        {% if ans %}
-        <p id="answer">ans:\[{{ tgt }} = {{ ans }}\]</p>
+    {% if ans %}
+    <div id="ansewer-space" class="scroll-on">
+        <p id="answer">ans:\[{{ tgt }} = {{ ans }}\]</p>    
+    </div>
+    {% endif %}
+    
+    <div id="latex-space">
+        {% if tgt %}
+        <p>latex:<textarea id="latex" readonly>&#123;{{ tgt }}&#125;</textarea></p>
         {% endif %}
     </div>
 </main>
+
 
 {% endblock content %}
