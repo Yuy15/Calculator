@@ -2,7 +2,7 @@
 {% block content %}
 <h1>Calculator</h1>
 
-<main id="main">
+<main>
     <button onclick="location.href='/'">Home</button>
 
     <form action="/integral", method="post">
@@ -36,6 +36,7 @@
         </div>
     </div>
 
+    <div id="tgt_vue">{{ tgt_vue }}</div>
     <div class="preview-space">
         {%if tgt %}
         <p id="preview" class="scroll-on">preview:\[{{ tgt }}\]</p>
